@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* x402.org-inspired LIGHT MODE global styles */
+@layer base {
+  * {
+    border-color: #d0d0d0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  code {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  }
+
+  /* High contrast for accessibility */
+  h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+
+  p {
+    color: #666666;
+    line-height: 1.7;
+  }
+
+  /* Focus states for accessibility */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #000000;
+  }
+}
+
+@layer components {
+  /* Button styles */
+  .btn-primary {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-primary:active {
+    opacity: 0.8;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #666666;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    color: #1a1a1a;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #f8f8f8;
+  }
+  
+  .btn-secondary:active {
+    background-color: #d0d0d0;
+  }
+  
+  .btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Card styles */
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  /* Input styles */
+  .input {
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    color: #1a1a1a;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .input:focus {
+    border-color: #000000;
+    outline: none;
+    box-shadow: 0 0 0 1px #000000;
+  }
+  
+  .input::placeholder {
+    color: #666666;
+  }
+
+  /* Stat card styles */
+  .stat-card {
+    background-color: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-label {
+    color: #666666;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-value {
+    color: #1a1a1a;
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  /* Text utilities */
+  .text-gradient {
+    background: linear-gradient(to right, #000000, #1a1a1a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Animation utilities */
+  .animate-subtle {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dotted pattern background (x402.org-inspired) */
+  .dotted-pattern {
+    background-image: radial-gradient(circle, #999999 2px, transparent 2px);
+    background-size: 24px 24px;
+  }
+
+  .dotted-pattern-dense {
+    background-image: radial-gradient(circle, #aaaaaa 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+  
+  .dotted-pattern-light {
+    background-image: radial-gradient(circle, #cccccc 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dotted-pattern-large {
+    background-image: radial-gradient(circle, #999999 4px, transparent 4px);
+    background-size: 40px 40px;
+  }
+}
+
