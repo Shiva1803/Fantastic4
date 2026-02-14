@@ -1,0 +1,20 @@
+services:
+  # Backend Service + Telegram Bot
+  - type: web
+    name: fantastic4-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: chmod +x start.sh && ./start.sh
+    plan: free
+    branch: main
+    numNumInstances: 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: FLASK_PORT
+        value: 10000
+    disk:
+      name: data
+      mountPath: /var/lib/data
+      sizeGB: 1
