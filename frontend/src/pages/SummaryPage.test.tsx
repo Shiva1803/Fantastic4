@@ -73,7 +73,7 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     // Component should not display summary content
     await waitFor(() => {
       expect(screen.queryByText('Session Summary')).not.toBeInTheDocument();
@@ -82,9 +82,9 @@ describe('SummaryPage', () => {
 
   it('displays loading state while fetching summary', () => {
     // Create a promise that never resolves to keep loading state
-    const neverResolve = new Promise(() => {});
+    const neverResolve = new Promise(() => { }) as Promise<any>;
     vi.mocked(apiClient.summarizeConversation).mockReturnValue(neverResolve);
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -101,7 +101,7 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     expect(screen.getByText('Generating summary...')).toBeInTheDocument();
   });
 
@@ -109,7 +109,7 @@ describe('SummaryPage', () => {
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -126,25 +126,25 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     // Wait for summary to load - use getAllByText and check for multiple instances
     await waitFor(() => {
       expect(screen.getAllByText('Session Summary').length).toBeGreaterThan(0);
     });
-    
+
     // Check statistics - use more specific queries
     expect(screen.getByText('AI Messages')).toBeInTheDocument();
     const aiCount = screen.getByText('AI Messages').nextElementSibling;
     expect(aiCount).toHaveTextContent('1');
-    
+
     expect(screen.getByText('Human Messages')).toBeInTheDocument();
     const humanCount = screen.getByText('Human Messages').nextElementSibling;
     expect(humanCount).toHaveTextContent('2');
-    
+
     expect(screen.getByText('Escalations')).toBeInTheDocument();
     expect(screen.getByText('Duration')).toBeInTheDocument();
     expect(screen.getByText('2m 5s')).toBeInTheDocument();
-    
+
     // Check sections
     expect(screen.getByText('Commitments & Plans')).toBeInTheDocument();
     expect(screen.getByText('Action Items')).toBeInTheDocument();
@@ -156,7 +156,7 @@ describe('SummaryPage', () => {
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -173,15 +173,15 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getAllByText('Session Summary').length).toBeGreaterThan(0);
     });
-    
+
     // Check that AI badge appears for AI messages
     const aiBadges = screen.getAllByText('AI');
     expect(aiBadges).toHaveLength(1);
-    
+
     // Check that all messages are displayed
     expect(screen.getByText('Hey, want to grab lunch tomorrow?')).toBeInTheDocument();
     expect(screen.getByText('Sure! How about 12:30?')).toBeInTheDocument();
@@ -192,7 +192,7 @@ describe('SummaryPage', () => {
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -209,11 +209,11 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText('Commitments & Plans')).toBeInTheDocument();
     });
-    
+
     expect(screen.getByText('Lunch at 12:30 tomorrow')).toBeInTheDocument();
   });
 
@@ -221,7 +221,7 @@ describe('SummaryPage', () => {
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -238,11 +238,11 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText('Action Items')).toBeInTheDocument();
     });
-    
+
     expect(screen.getByText('Confirm lunch location')).toBeInTheDocument();
     expect(screen.getByText('Set reminder')).toBeInTheDocument();
   });
@@ -251,7 +251,7 @@ describe('SummaryPage', () => {
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -268,11 +268,11 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText('Key Topics')).toBeInTheDocument();
     });
-    
+
     expect(screen.getByText('lunch')).toBeInTheDocument();
     expect(screen.getByText('meeting')).toBeInTheDocument();
   });
@@ -281,7 +281,7 @@ describe('SummaryPage', () => {
     const error = new Error('API error');
     error.name = 'ApiClientError';
     vi.mocked(apiClient.summarizeConversation).mockRejectedValue(error);
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -298,21 +298,21 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText('Error')).toBeInTheDocument();
     });
-    
+
     expect(screen.getByText(/Failed to generate summary/)).toBeInTheDocument();
   });
 
   it('navigates to train page when Start New Session is clicked', async () => {
     const user = userEvent.setup();
-    
+
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: mockSummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -329,14 +329,14 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getAllByText('Session Summary').length).toBeGreaterThan(0);
     });
-    
+
     const startNewButton = screen.getByText('Start New Session');
     await user.click(startNewButton);
-    
+
     // Navigation would be handled by router in real app
     // In tests, we just verify the button exists and is clickable
     expect(startNewButton).toBeInTheDocument();
@@ -349,11 +349,11 @@ describe('SummaryPage', () => {
       actionItems: [],
       keyTopics: [],
     };
-    
+
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: emptySummary,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -370,16 +370,16 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getAllByText('Session Summary').length).toBeGreaterThan(0);
     });
-    
+
     // These sections should not appear when empty
     expect(screen.queryByText('Commitments & Plans')).not.toBeInTheDocument();
     expect(screen.queryByText('Action Items')).not.toBeInTheDocument();
     expect(screen.queryByText('Key Topics')).not.toBeInTheDocument();
-    
+
     // Transcript should still appear
     expect(screen.getByText('Full Transcript')).toBeInTheDocument();
   });
@@ -389,11 +389,11 @@ describe('SummaryPage', () => {
       ...mockSummary,
       duration: 45, // 45 seconds
     };
-    
+
     vi.mocked(apiClient.summarizeConversation).mockResolvedValue({
       summary: summaryWithDuration,
     });
-    
+
     render(
       <MemoryRouter
         initialEntries={[
@@ -410,7 +410,7 @@ describe('SummaryPage', () => {
         <SummaryPage />
       </MemoryRouter>
     );
-    
+
     await waitFor(() => {
       expect(screen.getByText('45s')).toBeInTheDocument();
     });
