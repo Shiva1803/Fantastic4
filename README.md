@@ -1,246 +1,125 @@
-# Conversation Autopilot
+# con.ai 🧠
 
-> AI that texts like you when you're busy
+> **Your second brain for conversations.**
+> Never lose a message, file, or context again.
 
-## Overview
+**con.ai** organizes your scattered conversations into intelligent **Spaces**. Forward messages from Telegram, upload files, or paste text, and then **ask questions** to get instant answers based on your data.
 
-Conversation Autopilot is an AI-powered application that learns your unique texting style and responds to messages on your behalf. By analyzing your past conversations, it captures your communication patterns—from emoji usage to sentence structure—and generates responses that sound authentically like you.
+![con.ai Demo](https://github.com/user-attachments/assets/placeholder-image-if-you-have-one)
 
-## The Problem
+## 🚀 Why con.ai?
 
-We're constantly interrupted by messages that require immediate responses, even when we're busy. Missing messages can strain relationships, but context-switching to respond breaks our focus and productivity.
+We have conversations across WhatsApp, Telegram, Slack, and iMessage. Important details—like the Airbnb code, flight tickets, or project requirements—get buried in the noise.
 
-## The Solution
+**con.ai solves this:**
+1.  **Create a Space** (e.g., "Trip to Goa", "Q4 Project")
+2.  **Dump Context**: Forward messages, upload PDFs/images, paste text.
+3.  **Ask Anything**: "What time is our flight?" or "What acts did we book?"
 
-Conversation Autopilot acts as your intelligent texting assistant:
-- **Learns your style**: Analyzes 15-20 past messages to understand how you communicate
-- **Responds authentically**: Generates messages matching your tone, emoji usage, and quirks
-- **Knows its limits**: Detects serious topics and flags when you need to respond personally
-- **Keeps you informed**: Provides summaries of what was discussed and commitments made
+The AI scans your content and gives you an exact answer with sources.
 
-## Key Features
+---
 
-### 1. Style Training
-Upload or paste past text conversations, and the AI analyzes your texting patterns:
-- Sentence length and structure
-- Emoji frequency and preferences
-- Punctuation habits
-- Common phrases and expressions
-- Tone and formality level
+## ✨ Key Features
 
-### 2. Autopilot Mode
-Enable autopilot and watch the AI respond to incoming messages in real-time, matching your communication style perfectly. Toggle it on/off anytime or take over manually when needed.
+### 🗂️ Organized Spaces
+Group related conversations, documents, and notes into dedicated spaces. No more scrolling back 4,000 messages to find one link.
 
-### 3. Smart Escalation Detection
-The AI knows when conversations need your personal attention:
-- Serious questions or emotional topics
-- Unfamiliar subjects outside your usual conversations
-- Scheduling conflicts or commitments
-- Sensitive personal information requests
+### 🔍 Semantic Search
+Search by **meaning**, not just keywords.
+- *Query:* "places to eat"
+- *Finds:* "We should check out that Italian place using the old recipe..."
 
-When detected, it pauses and alerts you with a confidence score and reason.
+### 🤖 RAG Query Engine (Talk to your Data)
+Powered by **Llama 3 (via Groq)** and **Vector Search**.
+- **User:** "How much do I owe Sarah?"
+- **AI:** "You owe Sarah ₹4,500 for the cab and dinner. Source: WhatsApp screenshot from yesterday."
 
-### 4. Conversation Summaries
-After each autopilot session, review:
-- Full transcript with AI vs human messages marked
-- Commitments and plans made
-- Action items identified
-- Key topics discussed
+### ✈️ Telegram Integration
+A seamless bridge between your chat apps and your second brain.
+- **Forward messages** directly to the bot to save them.
+- **Send files/photos** to upload them instantly.
+- **Ask questions** right from Telegram: `/ask When is the meeting?`
 
-## How It Works
+---
 
-### User Flow
-1. **Train**: Paste 15-20 of your past text messages
-2. **Analyze**: AI extracts your texting style profile
-3. **Demo**: Enter simulation mode—type as your friend, AI responds as you
-4. **Monitor**: AI flags serious topics for your attention
-5. **Review**: See summary of what the AI handled
+## 🛠️ Tech Stack
 
-### Technical Architecture
+- **Frontend**: React, TypeScript, Tailwind CSS, Vite
+- **Backend**: Python, Flask
+- **AI & RAG**:
+    - **LLM**: Llama 3.3 70B (via Groq API)
+    - **Embeddings**: `sentence-transformers/all-MiniLM-L6-v2`
+    - **Vector DB**: FAISS (Facebook AI Similarity Search)
+- **Integration**: `python-telegram-bot`
 
-**Frontend**: Vite + React + TypeScript + Tailwind CSS
-- Clean, intuitive interface with four main pages
-- Real-time conversation simulation
-- Visual feedback for escalations and loading states
+---
 
-**Backend**: Flask (Python)
-- RESTful API with three core endpoints
-- In-memory caching for performance
-- Retry logic and error handling
-
-**AI Integration**: Groq or OpenRouter API
-- Style analysis and pattern extraction
-- Context-aware response generation
-- Escalation detection with confidence scoring
-
-## Tech Stack
-
-- **Frontend**: Vite, React 18, TypeScript, Tailwind CSS
-- **Backend**: Flask 3.x, Python 3.10+
-- **AI**: Groq API or OpenRouter API
-- **State Management**: React hooks
-- **Testing**: Vitest, pytest, hypothesis (property-based testing)
-
-## Use Cases
-
-### Personal
-- Respond to friends while in meetings or focused work
-- Maintain conversations during commutes or workouts
-- Handle casual check-ins without breaking concentration
-
-### Professional
-- Quick responses to colleagues during deep work sessions
-- Maintain communication flow across time zones
-- Handle routine inquiries while focusing on priorities
-
-## Demo Script
-
-**Perfect for pitch presentations:**
-
-1. "Here are 20 of my actual text messages" [paste them]
-2. "Watch—the AI learned I use '😂' frequently and keep messages short"
-3. "Now I'm enabling autopilot. I'll pretend to be my friend:"
-4. [Type]: "hey u free for lunch tomorrow?"
-5. [AI responds]: "yea probably! what time 😂"
-6. [Type]: "your mom is in the hospital right?"
-7. [AI shows banner]: "⚠️ SERIOUS TOPIC - You should respond to this yourself"
-8. "See? It knows when to hand off. Here's the summary of what it handled."
-
-## Wow Factors
-
-- **Indistinguishable responses**: Side-by-side comparison shows judges can't tell AI from human
-- **Live demo capability**: Actually demo it live with audience members texting you
-- **Personality insights**: Shows you learned quirks like "you use 'lmao' in 47% of messages"
-- **Smart escalation**: The moment AI correctly flags a serious message gets applause
-
-## Build Time
-
-Designed for rapid development: **3-hour MVP build time**
-- 25 minutes: Project setup and dependencies
-- 60 minutes: Backend services and API endpoints
-- 110 minutes: Frontend pages and components
-- 40 minutes: Testing and polish
-
-## Future Enhancements
-
-- **Multiple profiles**: Different texting styles for different contacts (casual with friends, formal with boss)
-- **Calendar integration**: Check availability before making plans
-- **Browser extension**: Works with real messaging apps (iMessage, WhatsApp, etc.)
-- **Learning mode**: Continuously improves by observing your corrections
-
-## Why This Matters
-
-In a world of constant connectivity, Conversation Autopilot gives you back control over your attention while maintaining your relationships. It's not about replacing human connection—it's about protecting your focus for what matters most while staying present for the people you care about.
-
-## Getting Started
+## ⚡️ Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm
 - Python 3.10+
-- Groq or OpenRouter API key
+- Node.js 18+
+- [Groq API Key](https://console.groq.com/)
+- [Telegram Bot Token](https://t.me/botfather) (optional, for bot features)
 
-### Installation
-
-**Backend Setup**
+### 1. Clone & Setup Backend
 ```bash
-cd backend
+git clone https://github.com/Shiva1803/Fantastic4.git
+cd Fantastic4/backend
+
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-**Frontend Setup**
+Create a `.env` file in `backend/`:
+```env
+GROQ_API_KEY=your_groq_key_here
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+FLASK_PORT=5002
+```
+
+### 2. Setup Frontend
 ```bash
-cd frontend
+cd ../frontend
 npm install
+
+# Create .env
+echo "VITE_API_URL=http://localhost:5002" > .env
 ```
 
-### Configuration
-
-Create `.env` files:
-
-**Backend** (`backend/.env`):
-```
-GROQ_API_KEY=your-api-key-here
-# OR
-OPENROUTER_API_KEY=your-api-key-here
-FLASK_ENV=development
-```
-
-**Frontend** (`frontend/.env`):
-```
-VITE_API_URL=http://localhost:5000
-```
-
-### Running the Application
-
-**Start Backend**
+### 3. Run It
+**Terminal 1 (Backend):**
 ```bash
 cd backend
+# Run the API + Telegram Bot
 python app.py
+# (Or run 'python telegram_bot.py' separately if needed)
 ```
 
-**Start Frontend**
+**Terminal 2 (Frontend):**
 ```bash
 cd frontend
 npm run dev
 ```
 
-Visit `http://localhost:5173` to use the application.
-
-## Testing
-
-**Backend Tests**
-```bash
-cd backend
-pytest
-```
-
-**Frontend Tests**
-```bash
-cd frontend
-npm test
-```
-
-## Project Structure
-
-```
-conversation-autopilot/
-├── backend/
-│   ├── api/              # Flask routes
-│   ├── services/         # Business logic
-│   │   ├── style_analyzer.py
-│   │   ├── response_generator.py
-│   │   ├── escalation_detector.py
-│   │   └── conversation_summarizer.py
-│   ├── models/           # Data models
-│   ├── tests/            # Backend tests
-│   └── app.py            # Flask application
-├── frontend/
-│   ├── src/
-│   │   ├── pages/        # React pages
-│   │   ├── components/   # Reusable components
-│   │   ├── api/          # API client
-│   │   └── types/        # TypeScript interfaces
-│   └── tests/            # Frontend tests
-└── README.md
-```
-
-## License
-
-MIT License - feel free to use this project for your hackathon or personal projects!
-
-## Contributing
-
-This is a hackathon project, but contributions are welcome! Feel free to:
-- Report bugs
-- Suggest features
-- Submit pull requests
-
-## Acknowledgments
-
-Built with modern web technologies and AI capabilities to solve a real problem we all face: staying connected without sacrificing focus.
+Open `http://localhost:5173` and start creating spaces!
 
 ---
 
-**Built for hackathons. Designed for real life. Powered by AI.**
+## 🤖 Telegram Bot Commands
+
+Once your bot is running:
+- `/start` - Welcome guide
+- `/create <name>` - Create a new space
+- `/select <name>` - Switch active space
+- `/ask <question>` - Ask your space a question
+- **Forward any message** - Saves it to your active space
+
+---
+
+## 🤝 Contributing
+
+Built with ❤️ by **Team Diet Coke** for **Fantastic4**.
+OPEN SOURCE - MIT LICENSE.
