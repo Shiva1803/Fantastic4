@@ -7,7 +7,7 @@ services:
     startCommand: chmod +x start.sh && ./start.sh
     plan: free
     branch: main
-    numNumInstances: 1
+    numInstances: 1
     healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
